@@ -139,7 +139,7 @@ ts-parser-perl = "1.2.0"
 
 
 [target.'cfg(not(any(windows, target_os = "illumos", target_os = "freebsd")))'.dependencies]
-tikv-jemallocator = "0.7"
+tikv-jemallocator = { version = "0.7", optional = true }
 
 [dev-dependencies]
 assert_cmd = "2.0.17"
@@ -177,3 +177,6 @@ assets = [
 ]
 
 [features]
+default = ["jemalloc"]
+# Only the CLI sets a global allocator, so library users can turn this off.
+jemalloc = ["dep:tikv-jemallocator"]
