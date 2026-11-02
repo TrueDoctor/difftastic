@@ -41,6 +41,10 @@ impl TreeSitterParser {
 }
 
 fn main() {
+    // Cargo only sets CARGO_BIN_NAME for bin targets, but the library
+    // compiles the same CLI help text in options.rs.
+    println!("cargo:rustc-env=CARGO_BIN_NAME=difft");
+
     let parsers = vec![
         TreeSitterParser {
             name: "tree-sitter-janet-simple",
